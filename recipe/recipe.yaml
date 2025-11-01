@@ -23,7 +23,8 @@ build:
 requirements:
   host:
     - python ${{ python_min }}.*
-    - poetry >=0.12
+    # Try pinning poetry <2 for pkg_resource deprecation
+    - poetry >=0.12,<2
     - pip
   run:
     - python >=${{ python_min }}
