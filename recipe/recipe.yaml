@@ -26,6 +26,7 @@ requirements:
     # Try pinning poetry <2 for pkg_resource deprecation
     - poetry >=0.12,<2
     - pip
+    - setuptools
   run:
     - python >=${{ python_min }}
     - dramatiq >=1.5.0,<2.0.0
