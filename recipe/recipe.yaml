@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: periodiq
-  version: 0.13.0
+  version: "0.14.0"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/periodiq-${{ version }}.tar.gz
-  sha256: ecd83d7614bb9e019aa2718b63c4ffe0a6c77fa0d49f33fd90c309982ddcf7cb
+  sha256: 88a61d4b5872b24c4cfdd70c0885952673bb6f748a29301b9aa08cb87f5d23a7
 
 build:
   number: 0
@@ -23,21 +23,21 @@ build:
 requirements:
   host:
     - python ${{ python_min }}.*
-    - poetry >=0.12
+    - uv-build >=0.11,<0.12
     - pip
   run:
     - python >=${{ python_min }}
-    - dramatiq >=1.5.0,<2.0.0
+    - dramatiq >=1.5.0
     - pendulum >=2.0,<4
-    # package still uses pkg_resources, which is deprecated in setuptools though
-    - setuptools <81
 
 tests:
   - python:
       imports:
         - periodiq
       pip_check: true
-      python_version: ${{ python_min }}.*
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
   - requirements:
       run:
         - python ${{ python_min }}.*
